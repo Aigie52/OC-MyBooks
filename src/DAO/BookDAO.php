@@ -40,7 +40,7 @@ class BookDAO extends DAO
 
     public function find($id)
     {
-        $sql = "select * from book where id=?";
+        $sql = "select * from book where book_id=?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
         if ($row)
