@@ -38,6 +38,11 @@ class BookDAO extends DAO
         return $books;
     }
 
+    /**
+     * @param $id
+     * @return Book
+     * @throws \Exception
+     */
     public function find($id)
     {
         $sql = "select * from book where book_id=?";

@@ -7,6 +7,11 @@ use MyBooksApp\Domain\Author;
 
 class AuthorDAO extends DAO
 {
+    /**
+     * @param $id
+     * @return Author
+     * @throws \Exception
+     */
     public function find($id)
     {
         $sql = "select * from author where auth_id=?";
