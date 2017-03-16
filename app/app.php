@@ -1,6 +1,8 @@
 <?php
 
 // Register global errors and exception handlers
+use MyBooksApp\DAO\AuthorDAO;
+use MyBooksApp\DAO\BookDAO;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\TwigServiceProvider;
@@ -18,3 +20,14 @@ $app->register(new TwigServiceProvider(), array(
 $app->register(new AssetServiceProvider(), array(
     'assets.version' => 'v1'
 ));
+
+// Register services
+$app['dao.author'] = function ($app) {
+    return new AuthorDAO($app['db']);
+};
+$app['dao.book'] = function ($app) {
+    $bookDAO = new BookDAO($app['db']);
+    $bookDAO->setAuthorDAO($app['dao.author']);
+
+    return $bookDAO;
+};
